@@ -26,17 +26,15 @@ const wrappedText = (text: string) =>
   ));
 
 interface ChatBubbleProps extends Partial<Message> {
-  sources: string[];
+  // sources: string[];
 }
 
-export function ChatBubble({
-  role = "assistant",
-  content,
-  sources,
-}: ChatBubbleProps) {
+export function ChatBubble({role = "assistant",content}: ChatBubbleProps) {
+
   if (!content) {
     return null;
   }
+  
   const wrappedMessage = wrappedText(content);
 
   return (
@@ -56,26 +54,7 @@ export function ChatBubble({
         <CardContent className="text-sm">
           <Balancer>{wrappedMessage}</Balancer>
         </CardContent>
-        <CardFooter>
-          <CardDescription className="w-full">
-            {sources && sources.length ? (
-              <Accordion type="single" collapsible className="w-full">
-                {sources.map((source, index) => (
-                  <AccordionItem value={`source-${index}`} key={index}>
-                    <AccordionTrigger>{`Source ${index + 1}`}</AccordionTrigger>
-                    <AccordionContent>
-                      <ReactMarkdown linkTarget="_blank">
-                        {formattedSourceText(source)}
-                      </ReactMarkdown>
-                    </AccordionContent>
-                  </AccordionItem>
-                ))}
-              </Accordion>
-            ) : (
-              <></>
-            )}
-          </CardDescription>
-        </CardFooter>
+    
       </Card>
     </div>
   );

@@ -8,8 +8,6 @@ export function Chat() {
     {role: "assistant", content: "Hey I am your AI", id: "1"},
     {role: "user", content: "Hey I am the user", id: "2"}
   ];
-
-  const sources = ["I am source one,", "I am source two"];
   
   return (
     <div className="rounded-2xl border h-[75vh] flex flex-col justify-between shadow-2xl w-96 h-auto absolute right-9 bottom-32 z-10">
@@ -24,7 +22,6 @@ export function Chat() {
             key={id}
             role={role}
             content={content}
-            sources={role !== "assistant" ? [] : sources}
           />
         ))}
       </div>
